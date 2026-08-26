@@ -137,6 +137,15 @@ class CmsEndToEndTest extends TestCase
         $this->assertDatabaseHas('videos',['youtube_id'=>'rss-test-id','title'=>'RSS Test Lecture','thumbnail_url'=>'https://i.ytimg.com/vi/rss-test-id/hqdefault.jpg','view_count'=>4321]);
     }
 
+    public function test_youtube_flat_channel_metadata_imports_more_videos(): void
+    {
+        $path = storage_path('framework/testing/youtube-flat.tsv');
+        file_put_contents($path, "flatTest001\tFlat Channel Lecture\tNA\t3661\t987\n");
+        $this->artisan('youtube:sync',['--flat-file'=>$path])->assertSuccessful();
+        @unlink($path);
+        $this->assertDatabaseHas('videos',['youtube_id'=>'flatTest001','title'=>'Flat Channel Lecture','thumbnail_url'=>'https://i.ytimg.com/vi/flatTest001/hqdefault.jpg','duration'=>'01:01:01','view_count'=>987]);
+    }
+
     public function test_gallery_images_can_be_uploaded_edited_deleted_and_synced(): void
     {
         Storage::fake('public');

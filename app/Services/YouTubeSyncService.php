@@ -103,6 +103,22 @@ class YouTubeSyncService
         return $this->recordSuccess($count, 'rss');
     }
 
+    public function syncFlatFile(string $path): int
+    {
+        $count = 0;
+        foreach (file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) ?: [] as $line) {
+            $fields = str_getcsv($line, "\t");
+            [$id, $title, $thumbnail, $seconds, $views] = array_pad($fields, 5, null);
+            if (! preg_match('/^[A-Za-z0-9_-]{11}$/', (string) $id) || ! $title) continue;
+            if (! filter_var($thumbnail, FILTER_VALIDATE_URL)) $thumbnail = "https://i.ytimg.com/vi/{$id}/hqdefault.jpg";
+            $duration = is_numeric($seconds) ? gmdate(((int) $seconds >= 3600 ? 'H:' : '').'i:s', (int) $seconds) : null;
+            $this->saveVideo($id, $title, null, $thumbnail, null, (int) $views, $duration);
+            $count++;
+        }
+
+        return $this->recordSuccess($count, 'channel-list');
+    }
+
     private function saveVideo(string $id, string $title, ?string $description, ?string $thumbnail,
         ?string $publishedAt, int $views, ?string $duration): void
     {
