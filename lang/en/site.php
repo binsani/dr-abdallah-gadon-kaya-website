@@ -1,0 +1,1 @@
+<?php return ['home'=>'Home','about'=>'About','videos'=>'Videos','tiktok'=>'TikTok','facebook'=>'Facebook','audio'=>'Audio','articles'=>'Articles','events'=>'Events','gallery'=>'Gallery','books'=>'Books','contact'=>'Contact','message_sent'=>'Thank you. Your message has been received.'];

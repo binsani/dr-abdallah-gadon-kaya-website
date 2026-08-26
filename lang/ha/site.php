@@ -1,0 +1,1 @@
+<?php return ['home'=>'Gida','about'=>'Tarihin Rayuwa','videos'=>'Bidiyoyi','tiktok'=>'TikTok','facebook'=>'Facebook','audio'=>'Darussan Sauti','articles'=>'Makaloli','events'=>'Shirye-shirye','gallery'=>'Hotuna','books'=>'Littattafai','contact'=>'Tuntuɓa','message_sent'=>'Mun gode. An karɓi saƙonku.'];

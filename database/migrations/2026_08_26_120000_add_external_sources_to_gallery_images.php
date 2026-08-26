@@ -1,0 +1,20 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+    public function up(): void
+    {
+        Schema::table('gallery_images', function (Blueprint $table) {
+            $table->string('external_url', 1000)->nullable()->after('image_path');
+            $table->string('source_url', 1000)->nullable()->after('external_url');
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::table('gallery_images', fn (Blueprint $table) => $table->dropColumn(['external_url', 'source_url']));
+    }
+};
