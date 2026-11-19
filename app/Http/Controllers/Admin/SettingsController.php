@@ -25,7 +25,7 @@ class SettingsController extends Controller
             'daily_quote' => 'nullable|max:1000', 'daily_quote_source' => 'nullable|max:180', 'footer_description' => 'nullable|max:500',
             'contact_heading' => 'nullable|max:180', 'contact_description' => 'nullable|max:1000', 'contact_email' => 'nullable|email',
             'contact_phone' => 'nullable|max:50', 'contact_address' => 'nullable|max:500',
-            'facebook_url' => 'nullable|url|max:500', 'tiktok_url' => 'nullable|url|max:500', 'youtube_url' => 'nullable|url|max:500',
+            'facebook_url' => 'nullable|url|max:500', 'tiktok_url' => 'nullable|url|max:500', 'youtube_url' => 'nullable|url|max:500', 'x_url' => 'nullable|url|max:500',
             'instagram_url' => 'nullable|url|max:500', 'whatsapp_url' => 'nullable|url|max:500', 'telegram_url' => 'nullable|url|max:500',
             'youtube_channel_id' => 'nullable|max:100', 'youtube_api_key' => 'nullable|max:255', 'google_analytics_id' => 'nullable|max:50',
             'maintenance_mode' => 'nullable|boolean', 'logo' => 'nullable|image|max:5120', 'favicon' => 'nullable|image|max:2048', 'hero_image' => 'nullable|image|max:8192',

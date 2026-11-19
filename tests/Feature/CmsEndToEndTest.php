@@ -21,7 +21,7 @@ class CmsEndToEndTest extends TestCase
 
     public function test_every_public_page_language_search_and_contact_flow(): void
     {
-        foreach (['/', '/about', '/videos', '/tiktok', '/facebook', '/audio', '/articles', '/events', '/gallery', '/books', '/contact', '/search?q=official'] as $uri) {
+        foreach (['/', '/about', '/videos', '/tiktok', '/facebook', '/x', '/audio', '/articles', '/events', '/gallery', '/books', '/contact', '/search?q=official'] as $uri) {
             $this->get($uri)->assertOk()->assertDontSee('Fatal error', false);
         }
 
@@ -96,6 +96,7 @@ class CmsEndToEndTest extends TestCase
         $this->get('/')->assertSee('Editable Homepage Title')->assertSee('being updated');
         $this->get('/tiktok')->assertSee('data-embed-type="creator"',false)->assertSee('@dr_abdallah_gadon_kaya');
         $this->get('/facebook')->assertSee('facebook.com/plugins/page.php',false)->assertSee('DrabdallahGadonkaya');
+        $this->get('/x')->assertSee('twitter-timeline')->assertSee('https://x.com/abdallahgkaya');
 
         $featured = Video::create(['title'=>'Featured Visibility Test','slug'=>'featured-visibility-test','youtube_id'=>'featuretest','is_featured'=>true,'is_hidden'=>false,'published_at'=>now()->subYear()]);
         $hidden = Video::create(['title'=>'Hidden Visibility Test','slug'=>'hidden-visibility-test','youtube_id'=>'hiddentest','is_hidden'=>true,'published_at'=>now()]);
