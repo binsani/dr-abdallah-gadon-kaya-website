@@ -13,6 +13,11 @@ class PublicController extends Controller
             'videos' => Video::query()->select(['id', 'youtube_id', 'title', 'slug', 'thumbnail_url', 'playlist', 'published_at', 'is_featured'])->where('is_hidden', false)->orderByDesc('is_featured')->latest('published_at')->limit(6)->get(),
             'articles' => Article::query()->select(['id', 'title', 'slug', 'body', 'published_at'])->where('status', 'published')->latest('published_at')->limit(3)->get(),
             'events' => Event::query()->select(['id', 'title', 'slug', 'starts_at', 'venue'])->where('starts_at', '>=', now())->orderBy('starts_at')->limit(3)->get(),
+            'libraryStats' => [
+                'videos' => Video::query()->where('is_hidden', false)->count(),
+                'articles' => Article::query()->where('status', 'published')->count(),
+                'audio' => AudioTrack::query()->count(),
+            ],
         ]);
     }
 
